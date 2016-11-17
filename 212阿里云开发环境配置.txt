@@ -1,0 +1,93 @@
+#################################################### JDK
+/usr/lib/jvm/jdk1.7.0_76
+
+测试
+java -version
+
+####################################################MYSQL
+#安装包位置
+/softools/MySQL55
+
+#安装配置路径
+/usr/share/mysql
+
+#数据文件
+/var/lib/mysql
+
+
+#####################################################ZooKeeper
+#位置
+/usr/local/bin/zookeeper-3.4.8/bin
+
+#启动zookeeper
+/usr/local/bin/zookeeper-3.4.8/bin/zkServer.sh start
+
+
+########################################################Memchache
+#程序包位置
+/home/soft/memcached/memcached-1.4.22
+#安装位置
+/usr/local/bin/memcached
+
+#测试
+ ls -al /usr/lib | grep libevent
+ ls -al /usr/local/bin/mem*
+#启动：
+/usr/local/bin/memcached -d -p 22122 -u gzpcloud -m 1024 -c 2048 -P /var/run/memcached.pid
+
+###########################################################BSP 等的位置
+#启动
+sh /softools/apache-tomcat-bsp/bin/startup.sh
+sh /softools/apache-tomcat-bpm/bin/startup.sh
+sh /softools/apache-tomcat-fm/bin/startup.sh
+sh /softools/apache-tomcat-disk/bin/startup.sh
+sh /softools/apache-tomcat-gztbpsp/bin/startup.sh
+
+# 网盘文件存储
+/opt/disk/store
+
+# OpenOffice
+/opt/openoffice4
+
+###############################################################Kettle
+/opt/pentaho/pdi-ce-6.1.0.1-196
+
+/etc/init.d
+
+==================================其他环环境
+#权限
+chmod +x tomcatbsp
+chmod +x tomcatbpm
+chmod +x tomcatdisk
+chmod +x tomcatform
+
+#添加链接
+ln -s /etc/init.d/tomcatbsp /etc/rc2.d/S100TomcatBSP
+ln -s /etc/init.d/tomcatbpm /etc/rc2.d/S101TomcatBPM
+
+#删除链接
+rm -rf S40TomcatBSP
+
+#添加自动启动
+chkconfig --add tomcatbsp
+chkconfig --add tomcatbpm
+chkconfig --add tomcatdisk
+chkconfig --add tomcatform
+chkconfig --add zookeeper
+chkconfig --add memcached
+#确认
+chkconfig --list 
+#修改级别
+chkconfig --level 345 tomcat on 
+
+service tomcatbsp start
+
+
+# 卸载 memcached
+http://www.wuwenhui.cn/3714.html
+
+yum -y install gdb 装哪里了
+rpm -qa 
+
+rpm -ql
+
